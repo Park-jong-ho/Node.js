@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 
-let todo = [{id:1, content: '더미데이터'}, {id:2, content: '터미네이터'}]
+let todo = [{id:1, content: '밥먹기'}, {id:2, content: '잠자기'}]
 
 const app = express()
 
@@ -26,6 +26,24 @@ app.post('/', (req, res) => {
   const newTodo = { id: Number(new Date()), content: req.body }
   todo.push(newTodo)
   return res.send("Todo가 추가됐습니다.")
+})
+
+app.put('/', (req, res) => {
+  console.log(req.body);
+  todo = todo.map(el => {
+    if (el.id === req.body.id) {
+      return req.body
+    }else {
+      return el
+    }
+  })
+  return res.send("Todo가 수정되었습니다.")
+})
+
+app.delete('/', (req, res) => {
+  const id = Number(req.body)
+  todo = todo.filter(el => el.id !== id)
+  return res.send("Todo가 삭제되었습니다.")
 })
 
 // const server = http.createServer((req, res) => {

@@ -35,6 +35,7 @@ const readTodo = async () => {
 const updateTodo = (newTodo) => {
   return fetch('http://localhost:3000', {
     method: "PUT",
+    headers: { 'Content-Type': 'application/json'},
     body: JSON.stringify(newTodo)
   })
     .then(res => res.text())
