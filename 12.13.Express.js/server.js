@@ -46,6 +46,7 @@ app.delete('/', (req, res) => {
   return res.send("Todo가 삭제되었습니다.")
 })
 
+// 기본적인 방법으로 node.js 사용
 // const server = http.createServer((req, res) => {
 //   console.log(req.method + '요청이 들어왔어요');
 
