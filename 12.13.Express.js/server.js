@@ -1,6 +1,16 @@
-const http = require('http')
+const express = require('express')
+const cors = require('cors')
 
 let todo = [{id:1, content: '더미데이터'}, {id:2, content: '터미네이터'}]
+
+const app = express()
+
+app.use(cors({
+  origin: "http://127.0.0.1:5500",
+  methods: ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE']
+}))
+
+app.use(express.json())
 
 const server = http.createServer((req, res) => {
   console.log(req.method + '요청이 들어왔어요');
