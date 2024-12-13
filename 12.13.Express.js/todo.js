@@ -16,6 +16,11 @@ const ul = document.querySelector("#todo-list")
 const createTodo = () => {
   const newTodo = todoInput.value
 
+  return axios.post("http://localhost:3000", newTodo, {
+    headers: { 'Content-Type': 'text/plain'}
+  })
+  .then(res => console.log(res.data))
+
   return fetch('http://localhost:3000', {
     method: "POST",
     body: newTodo
