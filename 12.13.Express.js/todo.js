@@ -31,9 +31,8 @@ const createTodo = () => {
 
 // Read -> 서버에서 Todo 정보를 가져올 때
 const readTodo = async () => {
-  const res = await fetch('http://localhost:3000')
-  const data = await res.json()
-  return data
+  const res = await axios.get('http://localhost:3000')
+  return res.data
 }
 
 // Update -> 서버의 Todo 정보를 수정할 때
