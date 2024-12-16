@@ -1,5 +1,5 @@
 {
-  "name": "12.16.cookie",
+  "name": "cookie",
   "version": "1.0.0",
   "main": "cookie.js",
   "scripts": {
@@ -11,8 +11,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "cookie-parser": "^1.4.7",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "express": "^4.21.2"
+    "express": "^4.19.2"
   }
 }

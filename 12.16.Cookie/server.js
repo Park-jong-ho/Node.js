@@ -5,17 +5,21 @@ const cookieParser = require('cookie-parser')
 const app = express()
 
 app.use(cors({
-  origin: ['http://127.0.0.1 :5500/Node.js/12.16.Cookie/index.html', 'http://localhost:5500/Node.js/12.16.Cookie/index.html'],
+  origin: ['http://127.0.0.1:5500', 'http://localhost:5500'],
   methods: ['GET', 'DELETE', 'OPTIONS'],
-  Credential: true
+  credentials: true
 }))
-
 
 app.use(cookieParser())
 
 app.get('/', (req, res) => {
-  res.cookie('test-cookie', 'my cookie')
+  res.cookie('test-cookie', 'my cookie', {maxAge: 100000, httpOnly: true, secure: true})
   res.send('쿠키 생성 완료')
 })
 
-app.listen(3000, () => console.log('서버 실행'))
+app.delete('/', (req, res) => {
+  res.clearCookie('test-cookie')
+  res.send('쿠키 삭제 완료')
+})
+
+app.listen(3000, () => console.log('서버 실행!'))
