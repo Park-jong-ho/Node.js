@@ -10,6 +10,7 @@ const logoutButton = document.querySelector('#logout_button')
 
 
 axios.defaults.withCredentials = true;
+let accessToken = ''
 
 form.addEventListener('submit', (e) => e.preventDefault())
 
@@ -17,15 +18,18 @@ function login() {
   const userId = idInput.value
   const userPassword = passwordInput.value
 
-  return axios.post('http://localhost:3000', {userId, userPassword})
+  return axios.post('http://localhost:3000', { userId, userPassword })
+  .then(res => accessToken = res.data)
 }
 
 function logout() {
-  return axios.delete('http://localhost:3000')
+  accessToken = ''
 }
 
 function getUserInfo() {
-  return axios.get('http://localhost:3000')
+  return axios.get('http://localhost:3000', {
+    headers: { 'Authorization' : `Bearer ${accessToken}`}
+  })
 }
 
 function renderUserInfo(user) {
@@ -50,8 +54,5 @@ loginButton.onclick = () => {
 
 logoutButton.onclick = () => {
   logout()
-    .then(res => {
-      console.log(res)
-      renderLoginForm()
-    })
+  renderLoginForm()
 }

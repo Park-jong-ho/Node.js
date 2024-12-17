@@ -33,21 +33,15 @@ app.post('/', (req, res) => {
     res.status(401).send('로그인 실패')
   } else {
     const accessToken = jwt.sign({ userId: userInfo.user_id }, secretKey, { expiresIn: 1000 * 60 * 10 })
-    res.cookie('accessToken', accessToken)
-    res.send("토큰 생성 완료!")
+    res.send(accessToken)
   }
 })
 
 app.get('/', (req, res) => {
-  const { accessToken } = req.cookies
+  const accessToken = req.headers.authorization.split(' ')[1]
   const payload = jwt.verify(accessToken, secretKey)
   const userInfo = users.find(el => el.user_id === payload.userId) 
   return res.json(userInfo)
-})
-
-app.delete('/', (req, res) => {
-  res.clearCookie('accessToken')
-  res.send("토큰 삭제 완료!")
 })
 
 app.listen(3000, () => console.log('서버 실행!'))
