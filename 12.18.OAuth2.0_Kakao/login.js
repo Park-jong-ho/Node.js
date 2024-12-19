@@ -7,7 +7,7 @@ const logoutButton = document.querySelector('#logout_button')
 let currentOAuthService = ''
 
 const kakaoClientId = '666b9c53f48ae59f5e84c48f6764606a'
-const redirectURI = 'http://127.0.0.1:5500'
+const redirectURI = 'http://127.0.0.1:9000'
 let kakaoAccessToken = ''
 
 const naverClientId = 'BQFSSXGPFXCg6IWOvpa9'
